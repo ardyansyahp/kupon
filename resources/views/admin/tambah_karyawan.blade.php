@@ -95,8 +95,8 @@
                     <select name="jeniskelamin"
                         class="w-full rounded-[6px] border border-gray-200 px-3.5 py-2.5 text-xs focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none shadow-inner bg-white font-semibold cursor-pointer">
                         <option value="" {{ old('jeniskelamin') === null ? 'selected' : '' }}>-- Pilih Jenis Kelamin --</option>
-                        <option value="M" {{ old('jeniskelamin') == 'M' ? 'selected' : '' }}>M</option>
-                        <option value="F" {{ old('jeniskelamin') == 'F' ? 'selected' : '' }}>F</option>
+                        <option value="L" {{ old('jeniskelamin') == 'L' ? 'selected' : '' }}>L (Laki-laki)</option>
+                        <option value="P" {{ old('jeniskelamin') == 'P' ? 'selected' : '' }}>P (Perempuan)</option>
                     </select>
                     @error('jeniskelamin')
                         <p class="mt-1 text-[10px] text-red-500 font-bold">{{ $message }}</p>

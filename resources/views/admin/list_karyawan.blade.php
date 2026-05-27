@@ -301,8 +301,8 @@ class="max-w-full relative">
                         <select name="jeniskelamin" x-model="activeKaryawan.jeniskelamin"
                             class="w-full rounded-[6px] border border-gray-200 px-3 py-2 text-xs focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 outline-none bg-white font-semibold cursor-pointer">
                             <option value="">-- Pilih Gender --</option>
-                            <option value="M">M</option>
-                            <option value="F">F</option>
+                            <option value="L">L (Laki-laki)</option>
+                            <option value="P">P (Perempuan)</option>
                         </select>
                     </div>
 

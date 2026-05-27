@@ -177,7 +177,7 @@ class AdminController extends Controller
             'nama' => 'required|string|max:255',
             'departemen' => 'required|string|max:255',
             'plant' => 'required|string|in:1,3,4',
-            'jeniskelamin' => 'nullable|string|in:M,F',
+            'jeniskelamin' => 'nullable|string|in:L,P',
             'status' => 'nullable|string|max:255',
         ]);
 
@@ -237,7 +237,7 @@ class AdminController extends Controller
             'nik' => 'required|string|unique:karyawans,nik,' . $id,
             'nama' => 'required|string|max:255',
             'departemen' => 'required|string|max:255',
-            'jeniskelamin' => 'nullable|string|in:M,F',
+            'jeniskelamin' => 'nullable|string|in:L,P',
             'status' => 'nullable|string|max:255',
         ]);
 
