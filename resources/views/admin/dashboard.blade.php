@@ -239,15 +239,16 @@
                 
             $distDateFormatted = \Carbon\Carbon::parse($distDate)->translatedFormat('d F Y');
 
-            // 2. Define target hours
-            $hours = ['08:00', '10:00', '12:00', '14:00', '16:00', '18:00'];
+            // 2. Define target hours (12 PM to 12 AM)
+            $hours = ['12:00', '14:00', '16:00', '18:00', '20:00', '22:00', '24:00'];
             
             $chartData = [];
             $maxVal = $totalKaryawan > 0 ? $totalKaryawan : 100;
             
             // We want to calculate cumulative numbers for each hour point
             foreach ($hours as $index => $hour) {
-                $dateTimeStr = "$distDate $hour:00";
+                $dateTimeQuery = $hour === '24:00' ? '23:59:59' : "$hour:00";
+                $dateTimeStr = "$distDate $dateTimeQuery";
                 
                 $sudah = \App\Models\Karyawan::where('plant', $plant)
                     ->where('status_tukar', 'sudah')
@@ -274,7 +275,8 @@
             $pointsSudah = [];
             $pointsMenunggu = [];
             $pointsBelum = [];
-            $xCoords = [40, 130, 220, 310, 400, 490];
+            // Space 7 points equally across SVG width (approx 30 to 480)
+            $xCoords = [30, 105, 180, 255, 330, 405, 480];
             
             foreach ($chartData as $index => $data) {
                 $x = $xCoords[$index];
