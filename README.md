@@ -1,58 +1,76 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🐑 Aplikasi Penukaran Kupon Kurban (IT Mada Wikri)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi berbasis web yang dirancang khusus untuk memfasilitasi panitia kurban dan tim HRD dalam melakukan manajemen, pendataan, dan penukaran kupon daging kurban bagi karyawan di perusahaan.
 
-## About Laravel
+Aplikasi ini dilengkapi dengan fitur pencarian data secara langsung (*live-search*), manajemen data karyawan berbasis *Excel*, serta pemantauan statistik penukaran secara aktual (*real-time*).
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## ✨ Fitur Utama
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+*   **🔍 Live Search Karyawan:** Pencarian data karyawan dengan cepat berdasarkan NIK atau Nama menggunakan Alpine.js.
+*   **📊 Dashboard & Statistik Real-time:** Menampilkan laporan jumlah karyawan yang sudah menukar, menunggu, dan belum menukar kupon. Dilengkapi dengan grafik tren penukaran tiap 2 jam (dari 12 PM - 12 AM).
+*   **🏢 Multi-Plant Management:** Dukungan pembagian Hak Akses Admin berdasarkan lokasi Plant. Superadmin dapat melihat semua Plant.
+*   **📝 Pendaftaran Manual (Walk-in):** Karyawan yang tidak ada di daftar (database) dapat didaftarkan secara manual oleh tim HRD/IT di tempat.
+*   **📥 Import Data Excel:** Memudahkan proses penginputan data karyawan secara massal ke dalam sistem hanya dengan mengunggah file Excel.
+*   **⚡ Modern UI/UX:** Antarmuka responsif dan ramah pengguna dengan desain *clean* menggunakan **Tailwind CSS**.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 🛠️ Teknologi yang Digunakan
 
-## Learning Laravel
+*   **Backend:** [Laravel 11](https://laravel.com/) (PHP)
+*   **Frontend:** HTML, Vanilla CSS, [Tailwind CSS](https://tailwindcss.com/)
+*   **Interactivity:** [Alpine.js](https://alpinejs.dev/)
+*   **Database:** MySQL
+*   **Library Tambahan:** PhpSpreadsheet (Untuk ekspor/impor Excel)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🚀 Panduan Instalasi (Local Development)
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Ikuti langkah-langkah di bawah ini untuk menjalankan aplikasi di komputer lokal Anda:
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+1. **Clone repository ini**
+   ```bash
+   git clone https://github.com/IT-MadaWikri/kupon.git
+   cd kupon
+   ```
 
-## Agentic Development
+2. **Install dependensi PHP & Node.js**
+   ```bash
+   composer install
+   npm install
+   ```
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+3. **Konfigurasi Environment**
+   Salin file `.env.example` menjadi `.env`, lalu atur konfigurasi database Anda.
+   ```bash
+   cp .env.example .env
+   ```
 
-```bash
-composer require laravel/boost --dev
+4. **Generate Application Key**
+   ```bash
+   php artisan key:generate
+   ```
 
-php artisan boost:install
-```
+5. **Jalankan Migrasi & Seeder Database**
+   Perintah ini akan membuat struktur tabel beserta akun Admin standar.
+   ```bash
+   php artisan migrate --seed
+   ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+6. **Kompilasi Aset Frontend**
+   ```bash
+   npm run build
+   # atau jika dalam tahap pengembangan: npm run dev
+   ```
 
-## Contributing
+7. **Jalankan Server Lokal**
+   ```bash
+   php artisan serve
+   ```
+   Aplikasi sekarang dapat diakses melalui `http://localhost:8000`.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🧑‍💻 Hak Akses (Role)
 
-## Code of Conduct
+Aplikasi ini menggunakan 2 jenis level akses untuk panel administrasi:
+*   **Superadmin:** Memiliki kendali penuh ke seluruh sistem, termasuk mengekspor laporan dan memantau semua data dari setiap *Plant*.
+*   **Admin Plant:** Hanya memiliki akses untuk melakukan pemindaian (konfirmasi penukaran) dan melihat data karyawan yang berada di *Plant* yang sama dengan *Admin* tersebut.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+---
+© 2026 Tim IT Mada Wikri. All rights reserved.
