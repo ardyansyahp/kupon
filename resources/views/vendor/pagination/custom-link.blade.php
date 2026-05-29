@@ -11,7 +11,8 @@
 
         {{-- Previous Page --}}
         @if ($paginator->onFirstPage())
-            <span class="w-8 h-8 flex items-center justify-center text-gray-300 bg-gray-50 border border-gray-100 rounded-md cursor-not-allowed">
+            <span
+                class="w-8 h-8 flex items-center justify-center text-gray-300 bg-gray-50 border border-gray-100 rounded-md cursor-not-allowed">
                 <i class="fa-solid fa-angle-left text-xs"></i>
             </span>
         @else
@@ -24,7 +25,8 @@
         {{-- Pagination Elements --}}
         @foreach ($elements as $element)
             @if (is_string($element))
-                <span class="w-8 h-8 flex items-center justify-center text-gray-400 text-[10px] font-bold bg-white border border-gray-200 rounded-md cursor-default">
+                <span
+                    class="w-8 h-8 flex items-center justify-center text-gray-400 text-[10px] font-bold bg-white border border-gray-200 rounded-md cursor-default">
                     {{ $element }}
                 </span>
             @endif
@@ -32,7 +34,8 @@
             @if (is_array($element))
                 @foreach ($element as $page => $url)
                     @if ($page == $paginator->currentPage())
-                        <span class="w-8 h-8 flex items-center justify-center text-white bg-emerald-600 border border-emerald-600 rounded-md font-bold z-10 text-xs">
+                        <span
+                            class="w-8 h-8 flex items-center justify-center text-white bg-emerald-600 border border-emerald-600 rounded-md font-bold z-10 text-xs">
                             {{ $page }}
                         </span>
                     @else
@@ -54,7 +57,8 @@
                 <i class="fa-solid fa-angle-right text-xs"></i>
             </a>
         @else
-            <span class="w-8 h-8 flex items-center justify-center text-gray-300 bg-gray-50 border border-gray-100 rounded-md cursor-not-allowed">
+            <span
+                class="w-8 h-8 flex items-center justify-center text-gray-300 bg-gray-50 border border-gray-100 rounded-md cursor-not-allowed">
                 <i class="fa-solid fa-angle-right text-xs"></i>
             </span>
         @endif
