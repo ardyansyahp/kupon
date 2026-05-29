@@ -117,10 +117,17 @@
                 <span class="text-white/30 hidden sm:block">|</span>
 
                 {{-- Login Button --}}
-                <a href="{{ route('login') }}"
-                    class="text-sm border-2 border-white text-white {{ $theme['btn_hover_text'] }} hover:bg-white px-4 py-1.5 rounded font-bold transition-all uppercase tracking-wider">
-                    Login
-                </a>
+                @auth
+                    <a href="{{ route('admin.dashboard') }}"
+                        class="relative z-50 text-sm border-2 border-white text-white {{ $theme['btn_hover_text'] }} hover:bg-white px-4 py-1.5 rounded font-bold transition-all uppercase tracking-wider">
+                        Dashboard
+                    </a>
+                @else
+                    <a href="{{ route('login') }}"
+                        class="relative z-50 text-sm border-2 border-white text-white {{ $theme['btn_hover_text'] }} hover:bg-white px-4 py-1.5 rounded font-bold transition-all uppercase tracking-wider">
+                        Login
+                    </a>
+                @endauth
             </div>
         </div>
     </header>
