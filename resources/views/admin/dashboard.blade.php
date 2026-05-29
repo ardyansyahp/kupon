@@ -227,15 +227,8 @@
         {{-- Line Chart --}}
         @php
             $plant = $activePlant;
-            // 1. Find distribution date (most recent waktu_tukar or today)
-            $latestPenukaran = \App\Models\Karyawan::where('plant', $plant)
-                ->whereNotNull('waktu_tukar')
-                ->latest('waktu_tukar')
-                ->first();
-            
-            $distDate = $latestPenukaran 
-                ? \Carbon\Carbon::parse($latestPenukaran->waktu_tukar)->toDateString() 
-                : \Carbon\Carbon::today()->toDateString();
+            // 1. Event date is explicitly set to May 28, 2026
+            $distDate = '2026-05-28';
                 
             $distDateFormatted = \Carbon\Carbon::parse($distDate)->translatedFormat('d F Y');
 
@@ -301,7 +294,7 @@
             }
         @endphp
         <div class="bg-white rounded-[6px] border border-gray-100 p-5 shadow-sm flex flex-col justify-between min-h-[300px]">
-            <h3 class="font-extrabold text-gray-800 text-sm pb-3 border-b border-gray-100 font-sans tracking-tight">Trend Penukaran Hari Ini ({{ $distDateFormatted }})</h3>
+            <h3 class="font-extrabold text-gray-800 text-sm pb-3 border-b border-gray-100 font-sans tracking-tight">Trend Penukaran ({{ $distDateFormatted }})</h3>
             <div class="flex-1 flex flex-col justify-between gap-3 pt-3 select-none">
                 
                 {{-- Perfect Custom SVG Line Chart --}}
